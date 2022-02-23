@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 
 
@@ -20,19 +20,28 @@ function RenderDish({ dish }) {
 }
 
 function RenderComments(comments) {
-  return (
-   <div className='col-12 col-md-5 m-1' >
-     {comments.map(c => (
-              <div key={c.id}>
-                <p>--{c.author}</p>
-                <p>{c.comment}</p>
-                <p>{c.date}</p>
-              </div>
-            ))}
-   </div>
-
-  )
-
+ 
+  if (comments != null) {
+    return (
+        <div className="col-12 col-md-5 m-1">
+            <h4><b>Comments</b></h4>
+            {comments.map(comment => (
+                <ul className="list-unstyled">
+                    <li>
+                        <p>{comment.comment}</p>
+                        <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                    </li>
+                </ul>
+            )
+            )}
+        </div>   
+    );
+}
+else {
+    return (
+        <div></div>
+    );
+}
 }
 
 const DishDetail=(props)=>{
