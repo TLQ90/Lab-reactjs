@@ -22,17 +22,18 @@ function RenderDish({ dish }) {
 function RenderComments(comments) {
  
   if (comments != null) {
+    
     return (
         <div className="col-12 col-md-5 m-1">
             <h4><b>Comments</b></h4>
-            {comments.map(comment => (
+            {comments.map(comment => {
                 <ul className="list-unstyled">
                     <li>
                         <p>{comment.comment}</p>
                         <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                     </li>
                 </ul>
-            )
+            }
             )}
         </div>   
     );
@@ -49,7 +50,7 @@ const DishDetail=(props)=>{
   return (
     <div className='row'>
       <RenderDish className="col-12 col-md-5 m-1" dish={props.dish}/>
-      <RenderComments className="col-12 cpol-md m-" comments={props.dish.comments}/>
+      <RenderComments className="col-12 cpol-md m-" comments={props.comments}/>
     </div>
   )
   else return <div>
